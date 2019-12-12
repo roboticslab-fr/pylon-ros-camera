@@ -43,39 +43,39 @@ v. Ubuntu 16.04 / Pylon 5.2 / ROS Kinetic
 
 ### Change Device USER ID
 
-Plug & Power Camera (if connected through HUB)
+- Plug & Power Camera (if connected through HUB)
 
-Start Pylon
+- Start Pylon
 
-Open Camera
+- Open Camera
 
-Features -> Device Control -> Device USER ID 
-Set Name (blank by default) - For Our 4 cameras :
+- Features -> Device Control -> Device USER ID 
+- Set Name (blank by default) - For Our 4 cameras :
 
-- Ace_POLA_Left (Serial Number xxxxxx18)
-- Ace_POLA_Right (Serial Number xxxxxx19)
-- Ace_RGB_Left (Serial Number xxxxxx76)
-- Ace_RGB_Right (Serial Number xxxxxx79)
+	- Ace_POLA_Left (Serial Number xxxxxx18)
+	- Ace_POLA_Right (Serial Number xxxxxx19)
+	- Ace_RGB_Left (Serial Number xxxxxx76)
+	- Ace_RGB_Right (Serial Number xxxxxx79)
 
-Close Camera
+- Close Camera
 
-Disconnect USB Cable and Switch Off USB HUB
-Wait 1 minute
+- Disconnect USB Cable and Switch Off USB HUB
+- Wait 1 minute
 
 ### Check Device USER ID
  
-Plug & Power Camera (if connected through HUB)
+- Plug & Power Camera (if connected through HUB)
 
-Start Pylon
+- Start Pylon
 
-Open Camera
+- Open Camera
 
-Features -> Device Control -> Device USER ID 
-Check Name
+- Features -> Device Control -> Device USER ID 
+- Check Name
 
 ### Exposure Time 
 
-100 000 ms -> 10 fps
+- 100 000 ms -> 10 fps
 
 
 # --------------------------------------------------------------------------
