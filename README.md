@@ -77,8 +77,66 @@ v. Ubuntu 16.04 / Pylon 5.2 / ROS Kinetic
 
 - 100 000 ms -> 10 fps
 
+# --------------------------------------------------------------------------
+
+# Our own install procedure
+
+! ROS Kinetic desktop full is already installed & workspace created !
+
+Check latest step to be sure :
+	$ sudo apt-get install python-rosinstall python-rosinstall-generator python-
+wstool build-essential
+
+# Install Pylon Camera Software Suite for Linux
+
+	$ sudo dpkg -i pylon_5.2.0.13457-deb0_amd64.deb
+
+Typo in https://www.baslerweb.com/fp-1575381065/media/downloads/documents/application_notes/AW001491_Interfacing_Basler_Cameras_with_ROS.pdf
+
+NOT : $ echo “export PYLON_ROOT=/opt/pylon5” >> ~/.bashrc
+BUT : $ echo export PYLON_ROOT=/opt/pylon5 >> ~/.bashrc
+
+CHECK with : 
+
+	$ echo $PYLON_ROOT 
+	Should return /opt/pylon5
+
+# Install ROS Pylon packages
+
+	$ cd ~/ros/kinetic/catkin_ws/src
+
+	$ git clone https://github.com/roboticslab-fr/pylon-ros-camera.git
+
+(instead of https://github.com/basler/pylon-ros-camera.git !!! typo in application notes doc .git missing)git clone https://github.com/dragandbot/dragandbot_common.git
+
+	$ git clone https://github.com/dragandbot/dragandbot_common.git
+
+# Configure rosdep
+
+rosdep is ROS command-line tool for adding system dependencies. 
+This creates a 30-pylon_ros_camera.list file. The file is scanned with all current files in the same folder during the following rosdep update.
+
+	$ sudo sh -c 'echo "yaml https://raw.githubusercontent.com/basler/pylon-ros-camera/master/pylon_camera/rosdep/pylon_sdk.yaml" > /etc/ros/rosdep/sources.list.d/30-pylon_camera.list'
+
+(typo again ... plyon ...)
+
+	$ sudo rosdep install --from-paths . --ignore-src --rosdistro=$ROS_DISTRO -y
+
+	/opt/pylon5/bin/pylon-config
+	Found a pylon Installation with version 5 or greater
+	#All required rosdeps installed successfully
+
+# Compile workspace
+
+	$ cd ~/ros/kinetic/catkin_ws/
+	$ catkin_make clean
+	$ catkin_make
+
+	$ rospack profile
+
 
 # --------------------------------------------------------------------------
+# Official Doc starts here
 
 # pylon-ROS-camera
 
