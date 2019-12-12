@@ -1,3 +1,86 @@
+# Our tweeked version of pylon-ROS-camera
+
+## Config Files
+.../catkin_ws/src/pylon-ros-camera/pylon_camera/config
+
+- PolarCam G1 - GiGE
+	- g1_1.yaml
+	- g1_2.yaml
+	
+- BASLER Ace - USB3.0
+	- ace_RGB_Left.yaml
+	- ace_RGB_Right.yaml
+	- ace_POLA_Left.yaml
+	- ace_POLA_Right.yaml
+	
+## Launch files
+.../catkin_ws/src/pylon-ros-camera/pylon_camera/launch
+
+NB : observe streamed images with *rqt_image_view*
+
+### Single camera launch - Images published to /pylon_camera_node/image_raw
+
+- pylon_camera_node_G1.launch
+
+- pylon_camera_node_RGB_Right.launch / pylon_camera_node_RGB_Left.launch
+- pylon_camera_node_POLA_Right.launch / pylon_camera_node_POLA_Left.launch
+
+### Stereo camera launch - Images published to /camera_name/pylon_camera_node/image_raw
+
+- pylon_camera_node_2G1.launch -> cameras : g1_1 & g1_2
+
+- pylon_camera_node_2RGB.launch -> cameras : ace_RGB_Left & ace_RGB_Right
+
+- pylon_camera_node_2POLA.launch -> cameras : ace_POLA_Left & ace_POLA_Right
+
+### Dual Stereo camera launch - Images published to /camera_name/pylon_camera_node/image_raw
+
+- pylon_camera_node_2RGB_2POLA.launch -> cameras : ace_RGB_Left & ace_RGB_Right && ace_POLA_Left & ace_POLA_Right
+
+## Configure BASLER USB3 Cameras
+
+v. Ubuntu 16.04 / Pylon 5.2 / ROS Kinetic
+
+### Change Device USER ID
+
+Plug & Power Camera (if connected through HUB)
+
+Start Pylon
+
+Open Camera
+
+Features -> Device Control -> Device USER ID 
+Set Name (blank by default) - For Our 4 cameras :
+
+- Ace_POLA_Left (Serial Number xxxxxx18)
+- Ace_POLA_Right (Serial Number xxxxxx19)
+- Ace_RGB_Left (Serial Number xxxxxx76)
+- Ace_RGB_Right (Serial Number xxxxxx79)
+
+Close Camera
+
+Disconnect USB Cable and Switch Off USB HUB
+Wait 1 minute
+
+### Check Device USER ID
+ 
+Plug & Power Camera (if connected through HUB)
+
+Start Pylon
+
+Open Camera
+
+Features -> Device Control -> Device USER ID 
+Check Name
+
+### Exposure Time 
+
+100 000 ms -> 10 fps
+
+
+# -------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------
+
 # pylon-ROS-camera
 
 The official pylon ROS driver for [Basler](http://www.baslerweb.com/) GigE Vision and USB3 Vision cameras
